@@ -11,9 +11,9 @@ const upload = require('../../middleware/multer')
 const {  authentications,authorization} =require('../../middleware/authentication')
 
 router.get("/getAllauthor",authentications(),authorization(['author']),findALLController)
-router.get("/getOneauthor/:id",findOneController)
-router.get("/delete/:id",deleteController)
-router.get("/upDate/:id",updateController)
+router.get("/getOneauthor/:id",authentications(),findOneController)
+router.delete("/delete/:id",authentications(),deleteController)
+router.patch("/upDate/:id",authentications(),updateController)
 
 router.post("/signup",upload.single('avatar'),authorController)
 
